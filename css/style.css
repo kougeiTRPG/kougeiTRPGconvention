@@ -1,5 +1,4 @@
 html {
-    /* 10px縺ｧ1rem */
     font-size: 62.5%;
     font-family: "M PLUS 1p", sans-serif;
     font-weight: 400;
@@ -9,7 +8,7 @@ html {
 }
 
 body {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     overflow-x: hidden;
 }
 
@@ -44,30 +43,54 @@ nav {
     height: 8rem;
     margin: 0 calc(50% - 50vw);
     padding: 0 calc(50vw - 50%);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-    nav ul {
-        height: 100%;
-        margin: auto;
-        padding: 1.6rem 1rem;
-        display: flex;
-        justify-content: space-between;
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 5rem;
+    z-index: 1100;
+    position: absolute;
+    left: 1rem;
+}
+
+.menu-icon {
+    width: 30px;
+    height: 4px;
+    background-color: #343434;
+    margin: 5px 0;
+}
+
+nav ul {
+    height: 100%;
+    margin: auto;
+    padding: 1.6rem 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+    nav ul li:not(.navLogo) {
+        font-size: 2.5rem;
+        padding: 0.6rem 2.5rem;
     }
 
-        nav ul li:not(.navLogo) {
-            font-size: 2.5rem;
-            padding: 0.6rem 1rem;
-        }
+    nav ul li a {
+        color: #343434;
+        text-decoration: none;
+        height: 80%;
+    }
 
-        nav ul li a {
-            color: #343434;
-            text-decoration: none;
-            height: 80%;
-        }
-
-        nav ul li:not(.navButton) a:hover {
-            border-bottom: #ffffff 0.4rem solid;
-        }
+    nav ul li:not(.navButton) a:hover {
+        border-bottom: #ffffff 0.4rem solid;
+    }
 
 h2 {
     font-size: 3.9rem;
@@ -153,7 +176,6 @@ p {
 
     .table th,
     td {
-        vertical-align: center;
         padding: 3.2rem;
     }
 
@@ -188,16 +210,23 @@ p {
     background: #ffffff;
     display: flex;
     margin-bottom: 6.4rem;
+    flex-wrap: wrap;
 }
 
-    .tableCard .poster {
-        width: 33%;
-        height: auto;
+    .tableCard .imageContainer {
+        width: 100%;
+        max-width: 400px;
         margin: 0 auto;
+    }
+
+    .tableCard .poster {
+        width: 100%;
+        height: auto;
     }
 
     .tableCard .contents {
         margin: 3.2rem;
+        flex: 1;
     }
 
         .tableCard .contents h3 {
@@ -234,13 +263,19 @@ p {
         font-size: 2rem;
         text-align: center;
         color: #fbbc00;
+        white-space: nowrap;
+        overflow: hidden;
     }
 
 .tableCardInfoBot {
     display: flex;
-    justify-content: space-between;
     color: #ffffff;
+    flex-wrap: wrap;
 }
+
+    .tableCardInfoBot span {
+        margin-right: 3.2rem;
+    }
 
 .GMcomment {
     background: #e8e8e8;
@@ -259,7 +294,12 @@ footer {
     text-align: center;
 }
 
-@media screen and (max-width: 1170px) {
+.twitter {
+    color: white;
+}
+
+/* Media queries */
+@media screen and (max-width: 1230px) {
     .wrapper {
         max-width: 768px;
     }
@@ -286,7 +326,7 @@ footer {
     }
 
     .tableCard .poster {
-        width: 90%;
+        width: 100%;
         max-height: 90%;
     }
 
@@ -304,8 +344,133 @@ footer {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 980px) {
     .wrapper {
         max-width: 95%;
     }
+
+    #icon {
+        height: auto;
+    }
+
+        #icon img {
+            width: 100%;
+            height: auto;
+        }
+
+    .menu-toggle {
+        display: flex;
+    }
+        .menu-toggle.hide {
+            display: none;
+        }
+
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        background: #fbbc00;
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 70%;
+        height: 100%;
+        z-index: 1000;
+        transition: left 0.3s ease;
+    }
+
+        nav ul.show {
+            left: 0;
+        }
+
+        nav ul li {
+            width: 100%;
+            text-align: center;
+            padding: 1rem;
+        }
+
+            nav ul li a {
+                display: block;
+                width: 100%;
+                padding: 1rem 0;
+            }
+
+            nav ul li a:hover {
+                color:white;
+            }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 900;
+    }
+
+        .overlay.show {
+            display: block;
+        }
+
+    #about {
+        flex-direction: column;
+    }
+
+    .aboutMsg {
+        width: 100%;
+        padding: 3.2rem;
+    }
+
+    .tableCard {
+        flex-direction: column;
+    }
+
+        .tableCard .poster {
+            width: 100%;
+            max-height: none;
+        }
+
+    .tableCardInfo {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .tableCardInfoTop span,
+    .tableCardInfoBot span {
+        margin-bottom: 0.8rem;
+    }
+    nav ul li a {
+        border-bottom: #ffffff 0.4rem solid;
+        font-size: 3.5rem;
+    }
+
+    .navButton {
+        width:100%;
+    }
+}
+
+
+@media screen and (min-width: 1171px) {
+    .tableCard {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+        .tableCard .imageContainer {
+            width: 40%;
+        }
+
+        .tableCard .poster {
+            width: 100%;
+            height: auto;
+        }
+
+        .tableCard .contents {
+            width: 55%;
+            margin: 0;
+            padding: 3.2rem;
+            box-sizing: border-box;
+        }
 }
